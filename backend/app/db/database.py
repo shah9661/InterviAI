@@ -1,21 +1,14 @@
 import logging
-import os
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from dotenv import load_dotenv
-from app.core.logging import get_logger
 
-load_dotenv()
+from app.core.logging import get_logger
+from app.core.config import settings
 
 logger = get_logger("database", log_file="logs/database.log", level=logging.DEBUG)
 
-DATABASE_URL = os.getenv("DATABASE_URL")
-if not DATABASE_URL:
-    logger.error("DATABASE_URL not set in environment")
-    raise ValueError("DATABASE_URL not set in environment")
-
-engine = create_engine(DATABASE_URL)
+engine = create_engine(settings.DATABASE_URL)
 
 sessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
