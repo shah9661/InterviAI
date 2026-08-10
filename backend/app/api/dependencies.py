@@ -3,10 +3,10 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
-from app.db.database import get_db
-from app.db.models.candidate import Candidate
-from app.core.security import decode_access_token
-from app.core.logging import get_logger
+from backend.app.db.database import get_db
+from backend.app.db.models.candidate import Candidate
+from backend.app.core.security import decode_access_token
+from backend.app.core.logging import get_logger
 
 logger = get_logger("auth_dependency", log_file="logs/auth.log", level=logging.INFO)
 

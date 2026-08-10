@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 from passlib.context import CryptContext
 from jose import jwt, JWTError
 
-from app.core.logging import get_logger
-from app.core.config import settings
+from backend.app.core.logging import get_logger
+from backend.app.core.config import settings
 
 logger = get_logger("security", log_file="logs/security.log", level=logging.INFO)
 
@@ -29,7 +29,6 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
         plain_password_bytes = plain_password.encode("utf-8")[:72]
         return pwd_context.verify(plain_password_bytes, hashed_password)
     except Exception as e:
-        # galat format ka hash ya corrupted hash aane pe passlib error de sakta hai
         logger.warning(f"Password verification failed: {e}")
         return False
 

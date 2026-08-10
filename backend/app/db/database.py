@@ -3,8 +3,8 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-from app.core.logging import get_logger
-from app.core.config import settings
+from backend.app.core.logging import get_logger
+from backend.app.core.config import settings
 
 logger = get_logger("database", log_file="logs/database.log", level=logging.DEBUG)
 

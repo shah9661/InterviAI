@@ -1,14 +1,10 @@
 from sqlalchemy import ( Column, JSON,Enum,Integer,DateTime,Text,ForeignKey)
-from database import Base
+from backend.app.db.database import Base
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
-import enum
+from backend.app.schemas.evaluation import EvaluationRating
 
-class EvaluationRating(str, enum.Enum):
-    excellent = "Excellent"
-    good      = "Good"
-    average   = "Average"
-    poor      = "Poor"
+
 
 class Evaluation(Base):
     __tablename__ = "evaluations"

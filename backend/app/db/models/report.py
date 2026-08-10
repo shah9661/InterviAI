@@ -1,5 +1,5 @@
 from sqlalchemy import ( Column,Integer,DateTime,Text,ForeignKey,Float)
-from database import Base
+from backend.app.db.database import Base
 from sqlalchemy.sql import func
 class OverallReport(Base):
     """Final report after interview completion"""

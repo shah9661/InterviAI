@@ -1,6 +1,17 @@
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional,List
+from backend.app.schemas.answer import AnswerOut
+from backend.app.schemas.session import SessionOut
+from backend.app.schemas.question import QuestionOut
+from backend.app.schemas.candidate import CandidateOut
+import enum
+
+class EvaluationRating(str, enum.Enum):
+    excellent = "Excellent"
+    good      = "Good"
+    average   = "Average"
+    poor      = "Poor"
 
 class EvaluationOut(BaseModel):
     id: int

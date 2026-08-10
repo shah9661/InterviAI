@@ -1,5 +1,5 @@
 from sqlalchemy import ( Column, String,Integer,DateTime,Text,ForeignKey)
-from database import Base
+from backend.app.db.database import Base
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 
@@ -14,4 +14,4 @@ class Candidate(Base):
     created_at=Column(DateTime(timezone=True),nullable=False,server_default=func.now())
     resume_chunks = relationship("ResumeChunk", back_populates="candidate", cascade="all, delete")
     sessions      = relationship("InterviewSession", back_populates="candidate", cascade="all, delete")
-    password_reset_otps = relationship("PasswordResetOTP", back_populates="user", cascade="all, delete")
+    

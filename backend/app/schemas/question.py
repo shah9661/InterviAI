@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from db.models.question import QuestionType
+from backend.app.db.models.question import QuestionType
 
 class QuestionOut(BaseModel):
     id: int
