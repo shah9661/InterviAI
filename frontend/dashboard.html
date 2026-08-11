@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - InterviewAI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        InterviewAI
+    </div>
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <button
+            id="logoutBtn"
+            class="btn-secondary"
+        >
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+
+<main class="dashboard-container">
+
+    <section class="welcome-section">
+
+        <h1>
+            Welcome,
+            <span id="candidateName"></span>
+        </h1>
+
+        <p>
+            Start your AI-powered interview.
+        </p>
+
+    </section>
+
+
+    <section class="dashboard-card">
+
+        <h2>
+            Start Interview
+        </h2>
+
+        <p>
+            Choose the number of questions for your interview.
+        </p>
+
+
+        <div class="form-group">
+
+            <label for="numQuestions">
+                Number of Questions
+            </label>
+
+            <select id="numQuestions">
+
+                <option value="5">
+                    5
+                </option>
+
+                <option value="10">
+                    10
+                </option>
+
+                <option value="15">
+                    15
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            id="startInterviewBtn"
+            class="btn-primary"
+        >
+            Start Interview
+        </button>
+
+    </section>
+
+
+    <p
+        id="dashboardMessage"
+        class="message"
+    ></p>
+
+</main>
+
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview Report - InterviewAI</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        InterviewAI
+    </div>
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <button
+            id="logoutBtn"
+            class="btn-secondary"
+        >
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+
+<main class="report-container">
+
+    <section class="report-header">
+
+        <h1>
+            Interview Report
+        </h1>
+
+        <p>
+            Detailed analysis of your interview.
+        </p>
+
+    </section>
+
+
+    <!-- Candidate -->
+
+    <section class="report-section">
+
+        <h2>
+            Candidate
+        </h2>
+
+        <div class="candidate-info">
+
+            <p>
+                <strong>Name:</strong>
+                <span id="candidateName"></span>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                <span id="candidateEmail"></span>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Session -->
+
+    <section class="report-section">
+
+        <h2>
+            Interview Session
+        </h2>
+
+        <div class="session-info">
+
+            <p>
+                <strong>Session ID:</strong>
+                <span id="sessionId"></span>
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <span id="sessionStatus"></span>
+            </p>
+
+            <p>
+                <strong>Questions:</strong>
+                <span id="sessionQuestions"></span>
+            </p>
+
+            <p>
+                <strong>Total Score:</strong>
+                <span id="sessionScore"></span>
+            </p>
+
+            <p>
+                <strong>Started:</strong>
+                <span id="startedAt"></span>
+            </p>
+
+            <p>
+                <strong>Completed:</strong>
+                <span id="completedAt"></span>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Overall Report -->
+
+    <section class="report-section">
+
+        <h2>
+            Overall Report
+        </h2>
+
+
+        <div class="report-summary">
+
+            <div class="report-item">
+
+                <h3>
+                    Average Score
+                </h3>
+
+                <p id="avgScore">
+                    --
+                </p>
+
+            </div>
+
+
+            <div class="report-item">
+
+                <h3>
+                    Total Questions
+                </h3>
+
+                <p id="totalQuestions">
+                    --
+                </p>
+
+            </div>
+
+
+            <div class="report-item">
+
+                <h3>
+                    Answered
+                </h3>
+
+                <p id="answered">
+                    --
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feedback-section">
+
+            <h3>
+                Strengths
+            </h3>
+
+            <p id="strengthsSummary">
+                --
+            </p>
+
+
+            <h3>
+                Weaknesses
+            </h3>
+
+            <p id="weaknessesSummary">
+                --
+            </p>
+
+
+            <h3>
+                Hiring Recommendation
+            </h3>
+
+            <p id="hiringRecommendation">
+                --
+            </p>
+
+
+            <h3>
+                Overall Feedback
+            </h3>
+
+            <p id="overallFeedback">
+                --
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Questions -->
+
+    <section class="report-section">
+
+        <h2>
+            Questions & Answers
+        </h2>
+
+        <div id="questionsContainer">
+
+            <!-- JavaScript will render questions here -->
+
+        </div>
+
+    </section>
+
+
+    <p
+        id="reportMessage"
+        class="message"
+    ></p>
+
+</main>
+
+
+<script src="js/api.js"></script>
+<script src="js/report.js"></script>
+
+</body>
+</html>
