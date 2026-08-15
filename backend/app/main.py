@@ -2,11 +2,9 @@ import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from backend.app.db.database import init_db
 from backend.app.core.config import settings
 from backend.app.core.logging import get_logger
-
 from backend.app.api.v1 import auth, candidates, interviews, questions, answers, reports
 
 logger = get_logger("main", log_file="logs/app.log", level=logging.INFO)
@@ -14,7 +12,6 @@ logger = get_logger("main", log_file="logs/app.log", level=logging.INFO)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup
     try:
         logger.info("Starting up InterviAI backend...")
         init_db()
@@ -25,7 +22,6 @@ async def lifespan(app: FastAPI):
     
     yield
     
-    # Shutdown
     logger.info("Shutting down InterviAI backend...")
 
 
