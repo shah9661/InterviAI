@@ -17,3 +17,8 @@ class AnswerOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class AnswerSubmit(BaseModel):
+    question_id: int
+    transcript: str
+    duration_s: float | None = None

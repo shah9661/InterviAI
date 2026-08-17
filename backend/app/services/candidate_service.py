@@ -42,14 +42,9 @@ async def extract_resume_text(resume: UploadFile) -> str:
             detail="Could not process resume file")
 
 
-async def register_candidate(
-    db: Session,
-    name: str,
-    email: str,
-    password: str,
-    target_role: str,
-    resume: UploadFile,
-) -> Candidate:
+async def register_candidate(db: Session,name: str,email: str,password:   
+    str,target_role: str,resume: UploadFile,) -> Candidate:
+    
     existing = db.query(Candidate).filter(Candidate.email == email).first()
     if existing:
         logger.warning(f"Registration attempt with existing email: {email}")

@@ -21,7 +21,7 @@ def create_session(db: Session, candidate_id: int, num_questions: int = 5) -> In
             candidate_id=candidate_id,
             status=InterviewStatus.in_progress,
             num_questions=num_questions,
-            started_at=datetime.utcnow(),
+            started_at=datetime.now(),
         )
         db.add(session)
         db.commit()

@@ -11,13 +11,8 @@ from backend.app.core.logging import get_logger
 logger = get_logger("answer_service", log_file="logs/answer_service.log", level=logging.INFO)
 
 
-def save_answer(
-    db: Session,
-    question_id: int,
-    candidate_id: int,
-    transcript: str,
-    duration_s: float = None
-) -> Answer:
+def save_answer(db: Session,question_id: int,candidate_id: int,
+    transcript: str,duration_s: float = None) -> Answer:
     question = db.query(Question).filter(Question.id == question_id).first()
     if not question:
         logger.warning(f"Answer submit attempt for non-existent question: {question_id}")

@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.app.db.database import init_db
 from backend.app.core.config import settings
 from backend.app.core.logging import get_logger
-from backend.app.api.v1 import auth, candidates, interviews, questions, answers, reports
+from backend.app.api.v1 import auth, candidates, interviews, questions, voice, reports
 
 logger = get_logger("main", log_file="logs/app.log", level=logging.INFO)
 
@@ -45,7 +45,7 @@ app.include_router(auth.router)
 app.include_router(candidates.router)
 app.include_router(interviews.router)
 app.include_router(questions.router)
-app.include_router(answers.router)
+app.include_router(voice.router)
 app.include_router(reports.router)
 
 

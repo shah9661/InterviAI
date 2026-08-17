@@ -16,6 +16,7 @@ class Settings(BaseSettings):
 
     
     GROQ_API_KEY: str | None = None
+    GROQ_API_KEY_VOICE:str|None=None
 
     class Config:
         env_file = ".env"

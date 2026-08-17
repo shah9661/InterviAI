@@ -96,3 +96,17 @@ async function getFullReport(sessionId) {
         }
     );
 }
+
+// SUBMIT VOICE ANSWER
+async function submitVoiceAnswer(audioBlob,questionId,durationSeconds) {
+    const formData = new FormData();
+    formData.append("file",audioBlob,"answer.webm");
+    formData.append("question_id",questionId);
+    formData.append("duration_s",durationSeconds);
+    return await apiRequest("/voice/submit",
+        {
+            method: "POST",
+            body: formData
+        }
+    );
+}

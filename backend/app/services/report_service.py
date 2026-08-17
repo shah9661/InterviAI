@@ -20,10 +20,6 @@ def get_report_by_session(db: Session, session_id: int) -> OverallReport:
 
 
 def get_report_for_candidate(db: Session, session_id: int, candidate_id: int) -> OverallReport:
-    """
-    IDOR-protected version — sirf tabhi report deta hai jab session
-    actually usी candidate ka ho jo request kar raha hai.
-    """
     session = db.query(InterviewSession).filter(InterviewSession.id == session_id).first()
     if not session:
         raise HTTPException(status_code=404, detail="Interview session not found")
@@ -36,10 +32,6 @@ def get_report_for_candidate(db: Session, session_id: int, candidate_id: int) ->
 
 
 def get_full_report_data(db: Session, session_id: int, candidate_id: int) -> dict:
-    """
-    Poora report + saare questions/answers/evaluations ek saath deta hai
-    (FullReportOut schema ke liye — jo tumne pehle banaya tha).
-    """
     session = db.query(InterviewSession).filter(InterviewSession.id == session_id).first()
     if not session:
         raise HTTPException(status_code=404, detail="Interview session not found")
