@@ -12,7 +12,7 @@ def get_llm(temperature: float = 0.7) -> ChatOpenAI:
         return ChatOpenAI(
             base_url="https://api.groq.com/openai/v1",
             api_key=settings.GROQ_API_KEY,
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             temperature=temperature,
         )
     except Exception as e:

@@ -52,12 +52,16 @@ async function loadQuestions() {
         if (questions.length === 0) {
             throw new Error("No questions found for this interview.");
         }
-        currentQuestionIndex = 0;
+
+        // Restore progress instead of always resetting to 0
+        const savedIndex = Number(localStorage.getItem(`qidx_${sessionId}`));
+        currentQuestionIndex = (savedIndex >= 0 && savedIndex < questions.length) ? savedIndex : 0;
+
         showQuestion();
         showMessage("", "");
     } catch (error) {
-        console.error("Failed to load questions:",error);
-        showMessage(error.message,"error");
+        console.error("Failed to load questions:", error);
+        showMessage(error.message, "error");
     }
 }
 
@@ -153,12 +157,13 @@ function stopRecording() {
     startButton.disabled = false;
     stopButton.disabled = true;
 }
-
 async function submitCurrentAnswer() {
-    const question =questions[currentQuestionIndex];
+    const question = questions[currentQuestionIndex];
+
     if (!question) {
         return;
     }
+
     if (!audioBlob) {
         showMessage(
             "Please record your answer first.",
@@ -168,39 +173,76 @@ async function submitCurrentAnswer() {
     }
 
     stopRecording();
-    const duration =
-        getElapsedSeconds();
-    const submitButton =
-        document.getElementById(
-            "submitAnswerBtn"
-        );
+
+    const duration = getElapsedSeconds();
+
+    const submitButton = document.getElementById("submitAnswerBtn");
+
     submitButton.disabled = true;
-    submitButton.textContent =
-        "Transcribing...";
+    submitButton.textContent = "Transcribing...";
+
     try {
-        const data = await submitVoiceAnswer(audioBlob,question.id,
-                    duration );
-        console.log("Transcript:", data.transcript);
-        console.log("Transcript:",data.transcript);
+        console.log("Submitting question ID:", question.id);
+        console.log(
+            "Current index BEFORE submit:",
+            currentQuestionIndex
+        );
 
-        showMessage("Answer submitted successfully.","success");
+        // Submit answer to backend
+        const data = await submitVoiceAnswer(
+            audioBlob,
+            question.id,
+            duration
+        );
 
+        console.log("Answer submitted successfully:", data);
+
+        // Move to next question
         currentQuestionIndex++;
+        localStorage.setItem(`qidx_${sessionId}`, currentQuestionIndex); 
 
-        if (currentQuestionIndex >=questions.length) {
+        console.log("Current index AFTER submit:", currentQuestionIndex);
+
+        console.log(
+            "Current index AFTER submit:",
+            currentQuestionIndex
+        );
+
+        console.log(
+            "Next question:",
+            questions[currentQuestionIndex]
+        );
+
+        showMessage(
+            "Answer submitted successfully.",
+            "success"
+        );
+
+        // All questions completed
+        if (currentQuestionIndex >= questions.length) {
             finishInterview();
             return;
         }
+
+        // Show next question
         setTimeout(() => {
             showQuestion();
         }, 500);
+
     } catch (error) {
         console.error(
-            "Voice answer submission failed:",error);
-        showMessage( error.message,"error");
+            "Voice answer submission failed:",
+            error
+        );
+
+        showMessage(
+            error.message || "Failed to submit answer.",
+            "error"
+        );
+
     } finally {
         submitButton.disabled = false;
-        submitButton.textContent ="Submit Answer";
+        submitButton.textContent = "Submit Answer";
     }
 }
 function startAnswerTimer() {
@@ -250,6 +292,7 @@ function resetTimer() {
 }
 function finishInterview() {
     stopRecording();
+    localStorage.removeItem(`qidx_${sessionId}`)
     showMessage("Interview completed.","success");
     setTimeout(() => {
         window.location.href =`report.html?session_id=${sessionId}`;
